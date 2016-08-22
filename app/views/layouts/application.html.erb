@@ -8,6 +8,23 @@
 </head>
 <body>
 
+<div align="right">
+  <% if session[:user_id] != nil %>
+    <% if request.original_fullpath != "/index" %>
+      <a href="/index">Index</a>
+    <% end %>
+    <% if request.original_fullpath != "/edit" %>
+      <a href="/edit">Edit Profile</a>
+    <% end %>
+    <a href="/logout">Logout</a>
+  <% end %>
+</div>
+
+<% if flash[:message] or flash[:error] %>
+	<%= flash[:message] %>
+	<%= flash[:error] %>
+<% end %>
+
 <%= yield %>
 
 </body>

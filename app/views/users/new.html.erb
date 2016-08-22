@@ -1,0 +1,24 @@
+<h1>Welcome!</h1>
+<div id="register">
+	<h2>Register</h2>
+	<form action="/create" method="post">
+		<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+		<p>Name: <input type="text" name="name"></p>
+		<p>Birth-Date: <input type="date" name="birthdate"></p>
+		<p>Username: <input type="text" name="username"></p>
+		<p>Email: <input type="text" name="email"></p>
+		<p>Password: <input type="password" name="password"></p>
+		*Password should be at least 8 characters
+		<p>Confirm PW: <input type="password" name="password_confirmation"></p>
+		<p><input type="submit" name="submit" value="Register"></p>
+	</form>
+</div>
+<div id="login">
+	<h2>Login</h2>
+	<form action="/login" method="post">
+		<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+		<p>Username: <input type="text" name="username"></p>
+		<p>Password: <input type="password" name="password"></p>
+		<p><input type="submit" name="submit" value="Login"></p>
+	</form>
+</div>
