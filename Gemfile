@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 gem 'hirb'
-gem 'rails-footnotes', '>= 4.0.0', '<5' 
-gem 'hirb'
+# gem 'rails-footnotes', '>= 4.0.0', '<5' JOSH's version
+gem 'rails-footnotes' #Dan's version
 gem 'rails', '4.1.8'
 gem 'pg'
 gem 'sass-rails', '~> 4.0.3'

@@ -1,6 +1,19 @@
 Rails.application.routes.draw do
-  #get 'teams/index'
-  root 'teams#index'
+
+  get 'teams' => "teams#index"
+
+  root 'users#new'
+
+  get 'users/new' => 'users#new'
+  post 'users/create' => 'users#create'
+  post 'sessions' => 'sessions#create'
+
+  get 'users/edit' => 'users#edit'
+  patch 'users' => 'users#update'
+
+  get 'users' => 'users#index'
+
+  get 'sessions/logout' => 'sessions#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
