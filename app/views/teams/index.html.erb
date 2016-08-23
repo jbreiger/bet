@@ -1,8 +1,29 @@
-<h1>Teams index</h1>
+<div class= "text-center">
+<h1>Teams results</h1>
+</div>
 	
-	
-	<p> Team1 is <%= @team1 %> </p>
-	<p> Team2 is <%= @team2 %> </p>
-	<p> Team1 goals is <%= @team1_goal %> </p>
-	<p> Team2 goals is <%= @team2_goal %> </p>
-	
+<div class="container">
+  <table class="table table-hover table-condensed">
+    <thead>
+      <tr>
+        <th>Home team</th>
+        <th>Away Team</th>
+        <th>Score</th>
+        <th> Date </th>
+      </tr>
+    </thead>
+    <tbody>
+    	<%@results.each do |x|%>
+      <tr>
+        <td><%=x.team1%></td>
+        <td><%=x.team2%></td>
+        <td><%=x.team1_goal%> - <%=x.team2_goal%></td>
+        <td> <%=x.date%> <td>
+      </tr>
+      <%end%>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

@@ -60,6 +60,7 @@ class TeamsController < ApplicationController
 	# puts "xxxxxxxxxxxxx"
 	# puts i
 	end
+  @results= Bet.all
 		#@name= @data["data"]["leagues"][0]["name"]
       # @data2= @data.leagues[0].name
       # puts @data2
