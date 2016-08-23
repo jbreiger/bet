@@ -1,0 +1,37 @@
+<div class= "text-center">
+	<h1> English Premier League Table </h1>
+</div>
+
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+
+
+<script>
+$(document).ready(function() {
+  $('#example').dataTable();
+});
+</script>
+
+<table id="example" class="table table-striped table-bordered">
+    <thead>
+      <tr>
+      	<th> Position </th>
+      	<th> Club </th>
+        <th>Record</th>
+        <th>Points</th>
+        <th>Matches Played</th>
+        <th> Goal Difference </th>
+      </tr>
+    </thead>
+    <tr>
+    	<%@team.each do |team| %>
+    	<td> <%=team["position"]%> </td>
+    	<td> <a href="/teams/<%=team["team"]%>"> <%=team["team"]%> </td>
+    	<td> <%=team["overall"]["wins"]%> - <%=team["overall"]["draws"]%> - <%=team["overall"]["losts"]%> </td>
+    	<td> <%=team["overall"]["points"]%>
+      	<td> <%=team["overall"]["matches_played"]%>
+      	<td> <%=team["overall"]["goal_difference"]%> </td>
+     </tr>
+     	<%end%>
+    <tbody>
+</table>    	

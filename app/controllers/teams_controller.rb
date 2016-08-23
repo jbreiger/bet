@@ -40,6 +40,26 @@ class TeamsController < ApplicationController
       end    
 
     end
+
+   def table
+    standing_uri= "https://sportsop-soccer-sports-open-data-v1.p.mashape.com/v1/leagues/premier-league/seasons/16-17/standings?mashape-key=QrOQ23UHkJmshjEicHpK4qPOretkp1rQ2LajsnB3Bi6iCRLl8S"
+       uri = URI.parse(standing_uri)      
+      #uri = URI.parse($soccer_uri)
+      http = Net::HTTP.new(uri.host, uri.port)
+      #to be able to access https URL, these line should be added
+      #github api has an https URL
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      request = Net::HTTP::Get.new(uri.request_uri)
+      response = http.request(request)
+      data = response.body
+      
+      #to parse JSON string; you may also use JSON.parse()
+      #JSON.load() turns the data into a hash
+      @data = JSON.load(data)
+      @team=@data["data"]["standings"]
+
+   end
    def create
    		for i in 1..3
    	  $soccer_week= "https://sportsop-soccer-sports-open-data-v1.p.mashape.com/v1/leagues/premier-league/seasons/16-17/rounds/giornata-#{i}/matches?mashape-key=QrOQ23UHkJmshjEicHpK4qPOretkp1rQ2LajsnB3Bi6iCRLl8S"	
