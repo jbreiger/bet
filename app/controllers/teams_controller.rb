@@ -10,7 +10,7 @@ class TeamsController < ApplicationController
    		#end
    	#end	
    def index
-   		for i in 1..2
+   		for i in 1..3
    	  $soccer_week= "https://sportsop-soccer-sports-open-data-v1.p.mashape.com/v1/leagues/premier-league/seasons/16-17/rounds/giornata-#{i}/matches?mashape-key=QrOQ23UHkJmshjEicHpK4qPOretkp1rQ2LajsnB3Bi6iCRLl8S"	
    	  	#This will go through the amount of weeks we want
    	  uri = URI.parse($soccer_week)			
@@ -39,7 +39,10 @@ class TeamsController < ApplicationController
 		@team1= @data["data"]["matches"][x]["home"]["team"]
 		@team2= @data["data"]["matches"][x]["away"]["team"]
 		@team1_goal= @data["data"]["matches"][x]["home"]["goals"]
+      @team1_goal= @team1_goal.to_i
+      #puts @team1_goal.is_an_int? 
 		@team2_goal= @data["data"]["matches"][x]["away"]["goals"]
+     @team2_goal= @team2_goal.to_i
 		@date= @data["data"]["matches"][x]["date_match"]
 		@date= @date.to_time
 		
@@ -60,7 +63,7 @@ class TeamsController < ApplicationController
 	# puts "xxxxxxxxxxxxx"
 	# puts i
 	end
-  @results= Bet.all
+  @results= Bet.all.order(date: :desc)
 		#@name= @data["data"]["leagues"][0]["name"]
       # @data2= @data.leagues[0].name
       # puts @data2

@@ -1,18 +1,19 @@
 Rails.application.routes.draw do
 
-  get 'bets/index'
+  get 'bets' => "bets#index"
+  get 'bets/create' => "bets#create"
+  get "bets/:id" => "bets#show"
 
   get 'teams' => "teams#index"
-
+  
+  
+  
   root 'users#new'
-
   get 'users/new' => 'users#new'
   post 'users/create' => 'users#create'
   post 'sessions' => 'sessions#create'
-
   get 'users/edit' => 'users#edit'
   patch 'users' => 'users#update'
-
   get 'users' => 'users#index'
 
   get 'sessions/logout' => 'sessions#destroy'

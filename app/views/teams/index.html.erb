@@ -10,6 +10,7 @@
         <th>Away Team</th>
         <th>Score</th>
         <th> Date </th>
+        <th> Get Odds </th>
       </tr>
     </thead>
     <tbody>
@@ -17,8 +18,18 @@
       <tr>
         <td><%=x.team1%></td>
         <td><%=x.team2%></td>
-        <td><%=x.team1_goal%> - <%=x.team2_goal%></td>
+        <%if x.team1_goal <0 %>
+        	<td> TBD</td>
+        <%else%> 
+        	<td><%=x.team1_goal%> - <%=x.team2_goal%></td>
+        <%end%>
         <td> <%=x.date%> <td>
+        
+        <%if x.game_id %>	
+        	<td> <a href="/bets/<%=x.game_id%>"> Betable </a> </td>
+        <%else%>
+        	<td> N/A </td>
+        <%end%>	
       </tr>
       <%end%>
     </tbody>
