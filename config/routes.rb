@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'bets/index'
+
   get 'teams' => "teams#index"
 
   root 'users#new'
