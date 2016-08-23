@@ -84,7 +84,7 @@ require 'open-uri'
 	     	 @home_line = @data2[0]["homeLine"]
 	     	 @away_line = @data2[0]["awayLine"]
 	     	 @draw_line= @data2[0]["drawLine"]
-
+	     	 
 	     	 @bet= Bet.where(game_id: i)
 	     	 	if @bet.first
 	     	 		@bet.first.update(home_line: @home_line, away_line: @away_line, draw_line: @draw_line)
