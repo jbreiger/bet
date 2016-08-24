@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   end
 
   def index
+    redirect_to "/teams"
   end
 
   def edit

@@ -1,5 +1,27 @@
-<h3> <a href="/teams/<%=@game.team1%>"> <%=@game.team1%> </a> to win is <%= @game.home_line %> </h3>
+
+<h3> <a href="/teams/<%=@game.team1%>"> <%=@game.team1%> </a> to win is <%= @game.home_line %> </h3> 
 
 <h3> <a href="/teams/<%=@game.team2%>"><%=@game.team2%></a> to win is <%= @game.away_line %> </h3>
 
 <h3> The draw line is <%= @game.draw_line %> </h3>
+
+<form action="/user_bets/<%=@game.id%>" class="form-inline" method="POST">
+  <div class="form-group">
+    <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+    <div class="input-group">
+      <div class="input-group-addon">$</div>
+      <input type="number" name="amount" class="form-control" id="exampleInputAmount" placeholder="Amount" >
+  </div>
+
+  <div class="radio">
+      <label><input type="radio" name="winner" value="home"> <%=@game.team1%> Home </label>
+    </div>
+    <div class="radio">
+      <label><input type="radio" name="winner" value="away"> <%=@game.team2%> Away</label>
+      <label><input type="radio" name="winner" value="draw"> Draw</label>
+    </div>
+
+
+  <button type="submit" class="btn btn-primary">Make Bet</button>
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+</form>

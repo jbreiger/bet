@@ -11,6 +11,7 @@ class TeamsController < ApplicationController
    	#end	
    def index 
      @results= Bet.all.order(date: :desc)
+     @date= Time.now
    end 
    def show
       standing_uri= "https://sportsop-soccer-sports-open-data-v1.p.mashape.com/v1/leagues/premier-league/seasons/16-17/standings?mashape-key=QrOQ23UHkJmshjEicHpK4qPOretkp1rQ2LajsnB3Bi6iCRLl8S"

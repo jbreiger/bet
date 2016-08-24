@@ -27,7 +27,12 @@
         <td> <%=x.date%> <td>
         
         <%if x.game_id %>	
+            
+          <% if x.date > @date %>
         	<td> <a href="/bets/<%=x.game_id%>"> Betable </a> </td>
+          <%else%>
+          <td> <a href="/bets/<%=x.game_id%>"> Practice </a> </td>
+          <%end%>
         <%else%>
         	<td> N/A </td>
         <%end%>	
