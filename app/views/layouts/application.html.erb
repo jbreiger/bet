@@ -10,13 +10,19 @@
 
 <div align="right">
   <% if session[:user_id] != nil %>
-    <% if request.original_fullpath != "/index" %>
-      <a href="users">Index</a>
+    <% if request.original_fullpath != "/teams/betable" %>
+      <a href="/teams/betable">Upcoming Games</a> |
     <% end %>
-    <% if request.original_fullpath != "/edit" %>
-      <a href="users/edit">Edit Profile</a>
+    <% if request.original_fullpath != "/teams" %>
+      <a href="/teams">All Games</a> |
     <% end %>
-    <a href="sessions/logout">Logout</a>
+    <% if request.original_fullpath != "/teams/table" %>
+      <a href="/teams/table">All Teams</a> |
+    <% end %>
+    <% if request.original_fullpath != "/users/edit" %>
+      <a href="/users/edit">Edit Profile</a> |
+    <% end %>
+    <a href="/sessions/logout">Logout</a>
   <% end %>
 </div>
 

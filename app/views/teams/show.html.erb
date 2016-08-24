@@ -2,23 +2,21 @@
 	<h1> <%=@team["team"]%> Recent Form </h1>
 	<h3> <%=@team["team"]%> are currently number <%=@team["position"]%> in the table </h3>
 
-
-
-<!-- <table class="table table-hover table-condensed">
-    <thead>
-      <tr>
-        <th>Record</th>
-        <th>Matches Played</th>
-        <th> Goal Difference </th>
-      </tr>
-    </thead>
-    <tbody>
-    	
-      <tr> -->
-
       	<h3> Record: <%=@team["overall"]["wins"]%> - <%=@team["overall"]["draws"]%> - <%=@team["overall"]["losts"]%> </h3>
       	<h3> Games: <%=@team["overall"]["matches_played"]%> </h3>
       	<h3> Goal Differential: <%=@team["overall"]["goal_difference"]%> </h3>
-</div>        
-  <!--    </tr>
-</table>   -->      	
+</div>
+
+<% if @comment %>
+<div id="commentsbox" style='margin: auto; overflow-y:auto; width:600px;height:400px;'>
+  <% @comment.reverse.each do |p| %>
+    <p><%= p.created_at %> - <%= @user.name %> : <%= p.comment %></p>
+  <% end %>
+</div>
+<form action="/comment/create/<%= @teamid.id %>" method="post">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  Comment: <input type="text" name="comment" style="width: 400px;">
+  <input type="submit" name="submit" value="Add Comment">
+  
+</form>
+<% end %>

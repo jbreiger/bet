@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   patch 'users' => 'users#update'
   get 'users' => 'users#index'
 
+  post 'comment/create/:id' => 'comments#create'
+
   get 'sessions/logout' => 'sessions#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.

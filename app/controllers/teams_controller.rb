@@ -40,6 +40,10 @@ class TeamsController < ApplicationController
           # puts params[:id]
          if x["team"] == params[:id]
            @team= @data["data"]["standings"][count]
+           @teamid = Teams.find_by(team: @team["team"])
+           session[:temp] = @teamid
+           @comment = TeamComments.where(teams: @teamid)
+           @user = User.find(session[:user_id])
           end
           count+=1   
       end    
@@ -66,7 +70,38 @@ class TeamsController < ApplicationController
 
    end
    def create
-   		for i in 1..3
+
+    standing_uri= "https://sportsop-soccer-sports-open-data-v1.p.mashape.com/v1/leagues/premier-league/seasons/16-17/standings?mashape-key=QrOQ23UHkJmshjEicHpK4qPOretkp1rQ2LajsnB3Bi6iCRLl8S"
+    uri = URI.parse(standing_uri)      
+    #uri = URI.parse($soccer_uri)
+    http = Net::HTTP.new(uri.host, uri.port)
+    #to be able to access https URL, these line should be added
+    #github api has an https URL
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    request = Net::HTTP::Get.new(uri.request_uri)
+    response = http.request(request)
+    data = response.body
+    
+    #to parse JSON string; you may also use JSON.parse()
+    #JSON.load() turns the data into a hash
+    d = JSON.load(data)
+    team=d["data"]["standings"]
+    standings= d["data"]["standings"].length 
+    x=0
+    while x < standings do
+      t= d["data"]["standings"][x]["team"]
+      hometeam = Teams.find_by(team: t)
+      if hometeam == nil
+        Teams.create(team: t)
+      else
+        hometeam.update(team: t) 
+      end
+      x+=1
+    end
+
+
+   	for i in 1..3
    	  $soccer_week= "https://sportsop-soccer-sports-open-data-v1.p.mashape.com/v1/leagues/premier-league/seasons/16-17/rounds/giornata-#{i}/matches?mashape-key=QrOQ23UHkJmshjEicHpK4qPOretkp1rQ2LajsnB3Bi6iCRLl8S"	
    	  	#This will go through the amount of weeks we want
    	  uri = URI.parse($soccer_week)			
@@ -92,28 +127,28 @@ class TeamsController < ApplicationController
     @matches= @data["data"]["matches"].length	
     x=0
     while x < @matches do
-		@team1= @data["data"]["matches"][x]["home"]["team"]
-		@team2= @data["data"]["matches"][x]["away"]["team"]
-		@team1_goal= @data["data"]["matches"][x]["home"]["goals"]
-      @team1_goal= @team1_goal.to_i
-      #puts @team1_goal.is_an_int? 
-		@team2_goal= @data["data"]["matches"][x]["away"]["goals"]
-     @team2_goal= @team2_goal.to_i
-		@date= @data["data"]["matches"][x]["date_match"]
-		@date= @date.to_time
-		
-		# @seconds= Time.at(1472293801)
-		# @seconds= @seconds.to_time
-		# puts @seconds
+  		@team1= @data["data"]["matches"][x]["home"]["team"]
+  		@team2= @data["data"]["matches"][x]["away"]["team"]
+  		@team1_goal= @data["data"]["matches"][x]["home"]["goals"]
+        @team1_goal= @team1_goal.to_i
+        #puts @team1_goal.is_an_int? 
+  		@team2_goal= @data["data"]["matches"][x]["away"]["goals"]
+       @team2_goal= @team2_goal.to_i
+  		@date= @data["data"]["matches"][x]["date_match"]
+  		@date= @date.to_time
+  		
+  		# @seconds= Time.at(1472293801)
+  		# @seconds= @seconds.to_time
+  		# puts @seconds
 
-    bet= Bet.find_by(team1:@team1, team2:@team2)
-    #bet_id= Bet.find_by(team1:@team1, team2:@team2).id
-    if bet == nil
-		  Bet.create(team1: @team1, team2: @team2, team1_goal: @team1_goal, team2_goal: @team2_goal, date: @date)
-     else
-      bet.update(team1: @team1, team2: @team2, team1_goal: @team1_goal, team2_goal: @team2_goal, date: @date) 
-		end
-    x+=1
+      bet= Bet.find_by(team1:@team1, team2:@team2)
+      #bet_id= Bet.find_by(team1:@team1, team2:@team2).id
+      if bet == nil
+  		  Bet.create(team1: @team1, team2: @team2, team1_goal: @team1_goal, team2_goal: @team2_goal, date: @date)
+      else
+        bet.update(team1: @team1, team2: @team2, team1_goal: @team1_goal, team2_goal: @team2_goal, date: @date) 
+  		end
+      x+=1
 	 end
 
 	end
