@@ -1,7 +1,7 @@
 class UserBetsController < ApplicationController
 def create
 	flash[:message]= [] 
-	@bet= Bet.find(params[:id])
+	@bet= Bet.find(params[:id]) #game_id. We are going to change this so that first find bet_id and then use to get game_id
 	#check(@bet)
 	@user= User.find(session[:user_id])
 	@user_money= @user.money
@@ -58,7 +58,7 @@ def create
 	#@game= @game.first
 	
 	
-	redirect_to "/bets/#{@bet.game_id}"
+	redirect_to "/bets/#{@bet.id}"
 end
 # def check (@bet)
 # 	puts @bet

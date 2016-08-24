@@ -5,8 +5,9 @@ require 'open-uri'
   $id_uri= "https://arisalexis-soccer-odds-v1.p.mashape.com/matches/39401?mashape-key=QrOQ23UHkJmshjEicHpK4qPOretkp1rQ2LajsnB3Bi6iCRLl8S"
   class BetsController < ApplicationController
    def show
-   		@bet= Bet.where(:game_id=> params[:id])
-   		@game= @bet.first
+   		#@bet= Bet.where(:game_id=> params[:id])
+      @game= Bet.find(params[:id])
+   		#@game= @bet.first
    end	
    def create
    	 session[:games] =[]
@@ -90,6 +91,7 @@ require 'open-uri'
 	     	 		@bet.first.update(home_line: @home_line, away_line: @away_line, draw_line: @draw_line)
 	     	 	end	
 	     session[:games]=[]	 	 	 
-	    end 	 
+	    end
+      redirect_to "/teams" 	 
     end  	 
 end 

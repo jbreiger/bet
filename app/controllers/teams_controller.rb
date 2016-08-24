@@ -13,6 +13,10 @@ class TeamsController < ApplicationController
      @results= Bet.all.order(date: :desc)
      @date= Time.now
    end 
+   def betable
+    @results= Bet.all.order(date: :desc)
+     @date= Time.now
+   end 
    def show
       standing_uri= "https://sportsop-soccer-sports-open-data-v1.p.mashape.com/v1/leagues/premier-league/seasons/16-17/standings?mashape-key=QrOQ23UHkJmshjEicHpK4qPOretkp1rQ2LajsnB3Bi6iCRLl8S"
        uri = URI.parse(standing_uri)      
@@ -102,12 +106,19 @@ class TeamsController < ApplicationController
 		# @seconds= @seconds.to_time
 		# puts @seconds
 
-    #Should put something like if home and away team is already included dont create
-		Bet.create(team1: @team1, team2: @team2, team1_goal: @team1_goal, team2_goal: @team2_goal, date: @date)
-		x+=1
+    bet= Bet.find_by(team1:@team1, team2:@team2)
+    #bet_id= Bet.find_by(team1:@team1, team2:@team2).id
+    if bet == nil
+		  Bet.create(team1: @team1, team2: @team2, team1_goal: @team1_goal, team2_goal: @team2_goal, date: @date)
+     else
+      bet.update(team1: @team1, team2: @team2, team1_goal: @team1_goal, team2_goal: @team2_goal, date: @date) 
+		end
+    x+=1
 	 end
 
 	end
+  redirect_to "/bets/create"
+
 end
 end
 

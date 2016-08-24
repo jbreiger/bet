@@ -1,0 +1,89 @@
+<div class= "text-center">
+<h1>Teams results</h1>
+
+<form action="/teams" method="POST"> <button type="submit" class="btn btn-primary" > Refresh data </button>
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+
+</form>
+<a href="/teams"> See all previous games </a>
+
+</div>
+<div class="text-center">
+  <h4> Betable Games </h4>
+</div>
+<div class="container">
+  <table class="table table-hover table-condensed">
+    <thead>
+      <tr>
+        <th> Bet </th>
+        <th>Home team</th>
+        <th> Away Team </th>
+        <th> Home Line </th>
+        <th>Away Line</th>
+        <th> Draw Line </th> 
+        <th> Date </th>       
+      </tr>
+    </thead>
+    <tbody>
+    	<%@results.each do |x|%>
+      <tr>
+          <% if x.game_id %>
+          <% if x.date > @date %>
+            
+          <td> <a href="/bets/<%=x.id%>"> Bet </a> </td>
+          
+          
+          <%end%>
+          
+          
+        
+        <td> <a href="/teams/<%=x.team1%>"> <%=x.team1%>  </td>
+        <td> <a href="/teams/<%=x.team2%>"><%=x.team2%></td>
+        <td> <%=x.home_line%> </td>
+        <td> <%=x.away_line%> </td>
+        <td> <%=x.draw_line%> </td>
+          <td> <%=x.date%> <td>
+        <%end%>
+        
+        
+        
+      </tr>
+      <%end%>
+    </tbody>
+  </table>
+</div>
+<div class="text-center">
+  <h4> Other Future Games </h4>
+</div>
+<div class="container">
+  <table class="table table-hover table-condensed">
+    <thead>
+      <tr>
+        <th>Home team</th>
+        <th> Away Team </th>
+        <th> Date </th>       
+      </tr>
+    </thead>
+    <tbody>
+      <%@results.each do |x|%>
+      <tr>
+        
+          <% if x.date > @date %>
+            <% if x.game_id==nil %>
+        
+          <td> <a href="/teams/<%=x.team1%>"> <%=x.team1%>  </td>
+        <td> <a href="/teams/<%=x.team2%>"><%=x.team2%></td>
+          <td> <%=x.date%> <td>
+        <%end%>
+        
+        
+        
+      </tr>
+      <%end%>
+      <%end%>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
