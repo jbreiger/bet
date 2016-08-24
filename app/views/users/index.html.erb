@@ -1,2 +1,42 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<h1>Welcome <%=@user.name%>!</h1>
+<h3> Your cash is <%=@user.money%> </h3>
+
+
+<div class="text-center">
+  <h4> Your Bets </h4>
+</div>
+<div class="container">
+  <table class="table table-hover table-condensed">
+    <thead>
+      <tr>
+      	<th> Result </th>
+        <th> Bet </th>
+        <th>Home team</th>
+        <th> Away Team </th>
+        <th> Home Line </th>
+        <th>Away Line</th>
+        <th> Draw Line </th> 
+        <th> Date  of match</th>  
+        <th> Date of bet </th>  
+      </tr>
+    </thead>
+    <tbody>
+    <tr>	
+    	<% @user_bets.each do |x| %>
+    	<% if x.bet.team1_goal > 0 %>
+    	<td> <%=x.bet.team1_goal%> - <%=x.bet.team2_goal%> </td> 
+    	<%else%>
+    	<td> TBD </td>
+    	<%end%>
+        <td> $<%=x.amount%>0 </td>
+        <td> <%=x.bet.team1%> </td>
+        <td> <%=x.bet.team2%> </td>
+        <td> <%=x.bet.home_line%> </td>
+        <td> <%=x.bet.away_line%> </td>
+        <td> <%=x.bet.draw_line%> </td>
+        <td> <%=x.bet.date%> </td>
+        <td> <%=x.bet.created_at.to_date%> </td>
+      </tr>
+      <%end%>
+    </tbody>
+  </table>

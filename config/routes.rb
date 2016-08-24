@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   get 'bets' => "bets#index"
   get 'bets/create' => "bets#create"
+  get "bets/check" => "bets#check"
   get "bets/:id" => "bets#show"
+
 
   get 'teams' => "teams#index"
   post 'teams' => "teams#create"

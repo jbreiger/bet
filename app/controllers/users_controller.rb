@@ -14,7 +14,8 @@ class UsersController < ApplicationController
   end
 
   def index
-    redirect_to "/teams"
+    @user= User.find(session[:user_id])
+    @user_bets= @user.user_bets
   end
 
   def edit

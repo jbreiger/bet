@@ -30,7 +30,7 @@
       <tr>
         <%if x.game_id %> 
           <% if x.date > @date %>
-          <td> <button class="btn"> <a href="/bets/<%=x.id%>"> Make Bet </button> </td>
+          <td> <button class="btn"> <a href="/bets/<%=x.id%>"> Make Bet </a> </button> </td>
           <%else%>
           <td> <a href="/bets/<%=x.id%>"> Practice </a> </td>
           <%end%>

@@ -1,7 +1,29 @@
 class UserBetsController < ApplicationController
+def cashout
+if outcome== "home" && params[:winner]== "home"
+		@wager= (params[:amount]).to_f * (@bet.home_line).to_f
+		puts "home team won and selected home team"
+		flash[:message]= ["You Won!"]
+	elsif outcome== "away" && params[:winner]=="away"
+		@wager= (params[:amount]).to_f * (@bet.away_line).to_f
+		flash[:message]= ["You Won!"]
+	elsif outcome== "draw" && params[:winner]== "draw"
+		@wager= (params[:amount]).to_f * (@bet.draw_line).to_f	
+		flash[:message] << "You Won!"	
+	else	
+		@wager= -(params[:amount].to_f)	
+		flash[:message] << "You Lost!"
+	end	
+	if @wager
+		@user_money += @wager
+		@user.update(money: @user_money)
+
+	end
+		redirect_to "/bets/#{@bet.id}"	
+end
 def create
 	flash[:message]= [] 
-	@bet= Bet.find(params[:id]) #game_id. We are going to change this so that first find bet_id and then use to get game_id
+	@bet= Bet.find(params[:id]) 
 	#check(@bet)
 	@user= User.find(session[:user_id])
 	@user_money= @user.money
@@ -20,6 +42,7 @@ def create
 	if @bet.team1_goal == -1
 		puts @bet.team1_goal 
 		flash[:message] = ["Game hasnt happened yet your bet is saved"]
+		redirect_to "/bets/#{@bet.id}"
 	else
 		puts @bet.team1_goal
 		
@@ -35,6 +58,9 @@ def create
 		outcome= "draw"	
 		puts "draw"			
 	end
+	
+	@bet.update(winner: outcome)
+
 	if outcome== "home" && params[:winner]== "home"
 		@wager= (params[:amount]).to_f * (@bet.home_line).to_f
 		puts "home team won and selected home team"
@@ -54,11 +80,12 @@ def create
 		@user.update(money: @user_money)
 
 	end
+		redirect_to "/bets/#{@bet.id}"
+
 	end
 	#@game= @game.first
 	
 	
-	redirect_to "/bets/#{@bet.id}"
 end
 # def check (@bet)
 # 	puts @bet

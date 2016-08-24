@@ -92,6 +92,28 @@ require 'open-uri'
 	     	 	end	
 	     session[:games]=[]	 	 	 
 	    end
-      redirect_to "/teams" 	 
-    end  	 
+      Bet.find(441).update(home_line: "1.5", away_line: "1.9", draw_line: "2.4")
+
+      redirect_to "/bets/check" 	 
+    end  
+    def check
+    
+    @bets= Bet.all
+    @bets.each do |bet|
+    if bet.team1_goal.to_i < 0
+      puts "hasn't happened yet"
+    elsif bet.team1_goal.to_i > bet.team2_goal.to_i
+    outcome= "home"
+    puts "home won"
+  elsif bet.team1_goal.to_i < bet.team2_goal.to_i
+    outcome= "away"
+    puts "away won"
+  elsif bet.team1_goal.to_i == bet.team2_goal.to_i
+    outcome= "draw" 
+    puts "draw" 
+    end 
+    bet.update(winner: outcome)
+  end 	
+  redirect_to "/teams" 
+ end   
 end 
