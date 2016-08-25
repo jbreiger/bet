@@ -1,0 +1,40 @@
+<div class= "text-center">
+  <% if request.original_fullpath == "/practice/team/Average%20Joes" %>
+    <%= image_tag("average-joe.png") %>
+    <style>
+      body{
+        background-color: orange;
+      }
+    </style>
+  <% end %>
+  <% if request.original_fullpath == "/practice/team/Globo%20Gym" %>
+    <%= image_tag("stiller.gif") %>
+    <style>
+      body{
+        background-color: purple;
+      }
+    </style>
+  <% end %>
+	<h1> <%=@team.team%></h1>
+
+      	<h3> Record: 0 - 0 - 0 </h3>
+      	<h3> Games: 0 </h3>
+      	<h3> Goal Differential: 0 </h3>
+</div>
+
+<% if @comment %>
+<div id="commentsbox" style='margin: auto; overflow-y:auto; width:600px;height:400px;'>
+  <% @comment.reverse.each do |p| %>
+    <p><%= p.created_at %> - <%= p.user.username %> : <%= p.comment %></p>
+  <% end %>
+
+</div>
+<% end %>
+<div class="text-center">
+<form action="/comment/create/<%= @team.id %>" method="post">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  Comment: <input type="text" name="comment" style="width: 400px;">
+  <input type="submit" name="submit" value="Add Comment">
+  
+</form>
+</div>

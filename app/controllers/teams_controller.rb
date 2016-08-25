@@ -98,6 +98,15 @@ class TeamsController < ApplicationController
       end
       x+=1
     end
+    teamstest = Teams.find_by(team:"Sharks")
+    if teamstest == nil
+      Teams.create team:"Sharks"
+      Teams.create team:"Jets"
+      Teams.create team:"Bears"
+      Teams.create team:"Clowns"
+      Teams.create team:"Average Joes"
+      Teams.create team:"Globo Gym"
+    end
 
     #Create dummy data for Practice table
     practicetest = Practice.find_by(team1:"Sharks")

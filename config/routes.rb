@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   get 'practice/:id' => 'practices#index'
   post 'practice/:id' => 'practices#bet'
+  get 'practice/match/:id' => 'practices#match'
+  get 'practice/team/:id' => 'practices#show'
 
   get 'teams' => "teams#index"
   post 'teams' => "teams#create"
@@ -19,8 +21,6 @@ Rails.application.routes.draw do
 
   post "user_bets/:id" => "user_bets#create"
   get "user_bet/cashout/:id" => "user_bets#cashout"
-  
-
 
   
   root 'users#new'

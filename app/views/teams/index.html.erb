@@ -33,13 +33,13 @@
       <%@practice.each do |x|%>
       <tr>
           <td> <a href="/practice/<%=x.id%>" class="btn btn-info" role="button">  Make Practice Bet </a> </td>
-         <td><a href="#"><%=x.team1%></a> </td>
-        <td><a href="#"><%=x.team2%></a></td>
+         <td><a href="/practice/team/<%=x.team1%>"><%=x.team1%></a> </td>
+        <td><a href="/practice/team/<%=x.team2%>"><%=x.team2%></a></td>
         <td> <%=x.home_line%> </td>
         <td> <%=x.away_line%> </td>
         <td> <%=x.draw_line%> </td>
         <td>??? - ???</td>
-        <td> <a href='/match/<%= x.id %>'><%=x.date%></a> </td>
+        <td> <a href='/practice/match/<%= x.id %>'><%=x.date%></a> </td>
         
         
       </tr>
