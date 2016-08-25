@@ -10,7 +10,7 @@
 <% if @comment %>
 <div id="commentsbox" style='margin: auto; overflow-y:auto; width:600px;height:400px;'>
   <% @comment.reverse.each do |p| %>
-    <p><%= p.created_at %> - <%= @user.name %> : <%= p.comment %></p>
+    <p><%= p.created_at %> - <%= @user.username %> : <%= p.comment %></p>
   <% end %>
 
 </div>

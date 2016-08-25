@@ -1,0 +1,21 @@
+<h1>
+	<a href="/teams/<%=@game.team1%>"><%= @game.team1 %></a><font size='5'>(h)</font> vs <a href="/teams/<%=@game.team2%>"><%= @game.team2 %></a><font size='5'>(a)</font>
+</h1>
+<br>
+<h1><%= @game.date %></h1>
+<br>
+<% if @comment %>
+<div id="commentsbox" style='margin: auto; overflow-y:auto; width:600px;height:400px;'>
+  <% @comment.reverse.each do |p| %>
+    <p><%= p.created_at %> - "GET USERNAME TO SHOW HERE" : <%= p.comment %></p>
+  <% end %>
+</div>
+<form action="/matchcomment/create/<%= @game.id %>" method="post">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  Comment: <input type="text" name="comment" style="width: 400px;">
+  <input type="submit" name="submit" value="Add Comment">
+  
+</form>
+<% end %>
+
+<!-- GET USERNAME TO SHOW UP IN LINE 10 -->
