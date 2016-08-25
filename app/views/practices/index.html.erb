@@ -1,0 +1,26 @@
+<h3> <a href="#"><%=@match.team1%> </a> to win is <%= @match.home_line %> </h3> 
+
+<h3> <a href="#"><%=@match.team2%></a> to win is <%= @match.away_line %> </h3>
+
+<h3> The draw line is <%= @match.draw_line %> </h3>
+
+<form action="/practice/<%=@match.id%>" class="form-inline" method="POST">
+  <div class="form-group">
+    <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+    <div class="input-group">
+      <div class="input-group-addon">$</div>
+      <input type="number" name="amount" class="form-control" id="exampleInputAmount" placeholder="Amount" >
+  </div>
+
+  <div class="radio">
+      <label><input type="radio" name="winner" value="home"> <%=@match.team1%> Home </label>
+    </div>
+    <div class="radio">
+      <label><input type="radio" name="winner" value="away"> <%=@match.team2%> Away</label>
+      <label><input type="radio" name="winner" value="draw"> Draw</label>
+    </div>
+
+
+  <button type="submit" class="btn btn-primary">Make Bet</button>
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+</form>

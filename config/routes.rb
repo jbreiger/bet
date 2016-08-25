@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get "bets/check" => "bets#check"
   get "bets/:id" => "bets#show"
 
+  get 'practice/:id' => 'practices#index'
+  post 'practice/:id' => 'practices#bet'
 
   get 'teams' => "teams#index"
   post 'teams' => "teams#create"
@@ -12,9 +14,12 @@ Rails.application.routes.draw do
   get 'teams/betable' => "teams#betable"
   get 'teams/:id' => "teams#show"
   
+
   post "user_bets/:id" => "user_bets#create"
   get "user_bet/cashout/:id" => "user_bets#cashout"
   
+
+
   
   root 'users#new'
   get 'users/new' => 'users#new'
