@@ -88,8 +88,8 @@ class TeamsController < ApplicationController
     team=d["data"]["standings"]
     standings= d["data"]["standings"].length 
     x=0
-    t= d["data"]["standings"][x]["team"]
     while x < standings do
+      t= d["data"]["standings"][x]["team"]
       hometeam = Teams.find_by(team: t)
       if hometeam == nil
         Teams.create(team: t)
