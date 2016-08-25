@@ -92,7 +92,6 @@ require 'open-uri'
 	     	 	end	
 	     session[:games]=[]	 	 	 
 	    end
-      Bet.find(441).update(home_line: "1.5", away_line: "1.9", draw_line: "2.4")
 
       redirect_to "/bets/check" 	 
     end  

@@ -12,6 +12,7 @@ class TeamsController < ApplicationController
    def index 
      @results= Bet.all.order(date: :desc)
      @date= Time.now
+     @practice = Practice.all
    end 
    def betable
     @results= Bet.all.order(date: :desc)
@@ -89,8 +90,8 @@ class TeamsController < ApplicationController
     team=d["data"]["standings"]
     standings= d["data"]["standings"].length 
     x=0
+    t= d["data"]["standings"][x]["team"]
     while x < standings do
-      t= d["data"]["standings"][x]["team"]
       hometeam = Teams.find_by(team: t)
       if hometeam == nil
         Teams.create(team: t)
@@ -100,6 +101,13 @@ class TeamsController < ApplicationController
       x+=1
     end
 
+    #Create dummy data for Practice table
+    practicetest = Practice.find_by(team1:"Sharks")
+    if practicetest == nil
+      Practice.create team1:"Sharks", team2:"Jets", date:"2016-08-14", home_line:"1.5", away_line:"1.9", draw_line:"2.4", team1_goal:"7", team2_goal:"4", winner:"home"
+      Practice.create team1:"Bears", team2:"Clowns", date:"2016-08-14", home_line:"1.9", away_line:"1.1", draw_line:"1.9", team1_goal:"1", team2_goal:"2", winner:"away"
+      Practice.create team1:"Average Joes", team2:"Globo Gym", date:"2016-08-14", home_line:"50.0", away_line:"0.02", draw_line:"99.0", team1_goal:"5", team2_goal:"4", winner:"home"
+    end
 
    	for i in 1..3
    	  $soccer_week= "https://sportsop-soccer-sports-open-data-v1.p.mashape.com/v1/leagues/premier-league/seasons/16-17/rounds/giornata-#{i}/matches?mashape-key=QrOQ23UHkJmshjEicHpK4qPOretkp1rQ2LajsnB3Bi6iCRLl8S"	
