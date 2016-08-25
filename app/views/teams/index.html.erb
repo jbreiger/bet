@@ -38,7 +38,7 @@
         <td> <%=x.away_line%> </td>
         <td> <%=x.draw_line%> </td>
         <td>??? - ???</td>
-        <td> <a href='match/<%= x.id %>'><%=x.date%></a> </td>
+        <td> <a href='/match/<%= x.id %>'><%=x.date%></a> </td>
         
         
       </tr>
@@ -88,7 +88,7 @@
           <%else%> 
           	<td><%=x.team1_goal%> - <%=x.team2_goal%></td>
           <%end%>
-          <td> <a href='match/<%= x.id %>'><%=x.date%> </a></td>
+          <td> <a href='/match/<%= x.id %>'><%=x.date%> </a></td>
         </tr>
       <%end%>
     </tbody>

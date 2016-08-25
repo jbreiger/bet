@@ -31,6 +31,17 @@ ActiveRecord::Schema.define(version: 20160825173637) do
     t.string   "winner"
   end
 
+  create_table "match_comments", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "bet_id"
+    t.text     "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "match_comments", ["bet_id"], name: "index_match_comments_on_bet_id", using: :btree
+  add_index "match_comments", ["user_id"], name: "index_match_comments_on_user_id", using: :btree
+
   create_table "mcomments", force: true do |t|
     t.integer  "bet_id"
     t.integer  "user_id"
