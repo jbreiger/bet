@@ -5,11 +5,15 @@
   <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
 
 </form>
+<br>
 <a href="/teams/betable"> See only future games </a>
 </div>
 
 <div class="container">
-<h2>Betting Practice</h2>
+<div class= "text-center">
+  <h2>Betting Practice</h2>
+</div>
+
   <table class="table table-hover table-condensed">
     <thead>
       <tr>
@@ -27,7 +31,7 @@
     <tbody>
       <%@practice.each do |x|%>
       <tr>
-          <td> <button class="btn"> <a href="/practice/<%=x.id%>"> Make Practice Bet </a> </button> </td>
+          <td> <a href="/practice/<%=x.id%>" class="btn btn-info" role="button">  Make Practice Bet </a> </td>
          <td><a href="#"><%=x.team1%></a> </td>
         <td><a href="#"><%=x.team2%></a></td>
         <td> <%=x.home_line%> </td>
@@ -44,7 +48,9 @@
 </div>
 
 <div class="container">
-<h2>Matches</h2>
+<div class= "text-center">
+  <h2>Matches</h2>
+</div>
   <table class="table table-hover table-condensed">
     <thead>
       <tr>
@@ -64,8 +70,7 @@
       <tr>
         <%if x.game_id %> 
           <% if x.date > @date %>
-          <td> <button class="btn"> <a href="/bets/<%=x.id%>"> Make Bet </a> </button> </td>
-          <%else%>
+          <td> <a href="/bets/<%=x.id%>" class="btn btn-info" role="button">  Make Bet  </a> </td>
           <td> <a href="/bets/<%=x.id%>"> Practice </a> </td>
           <%end%>
         <%else%>

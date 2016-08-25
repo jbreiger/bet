@@ -26,7 +26,7 @@
     <tbody>
     <tr>	
     	<% @user_bets.each do |x| %>
-      <td> <a href="user_bet/cashout/<%=x.id%>"> Cashout! <%=x.id%> </a> </d>
+      <td> <a href="user_bet/cashout/<%=x.id%>" class="btn btn-info" role="button"> Cashout! </a> </d>
       	<% if x.bet.team1_goal > 0 %>
       	<td> <%=x.bet.team1_goal%> - <%=x.bet.team2_goal%> </td> 
       	<%else%>
@@ -45,4 +45,5 @@
       <%end%>
     </tbody>
   </table>
+
 
