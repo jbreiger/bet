@@ -12,11 +12,14 @@
   <% @comment.reverse.each do |p| %>
     <p><%= p.created_at %> - <%= @user.username %> : <%= p.comment %></p>
   <% end %>
+
 </div>
+<% end %>
+<div class="text-center">
 <form action="/comment/create/<%= @teamid.id %>" method="post">
   <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
   Comment: <input type="text" name="comment" style="width: 400px;">
   <input type="submit" name="submit" value="Add Comment">
   
 </form>
-<% end %>
+</div>

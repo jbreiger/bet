@@ -16,7 +16,12 @@ Rails.application.routes.draw do
 
   get 'match/:id' => 'comments#match'
   
-  post 'user_bets/:id' => "user_bets#create"
+
+  post "user_bets/:id" => "user_bets#create"
+  get "user_bet/cashout/:id" => "user_bets#cashout"
+  
+
+
   
   root 'users#new'
   get 'users/new' => 'users#new'

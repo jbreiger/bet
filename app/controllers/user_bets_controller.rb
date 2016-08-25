@@ -1,26 +1,61 @@
 class UserBetsController < ApplicationController
 def cashout
-if outcome== "home" && params[:winner]== "home"
-		@wager= (params[:amount]).to_f * (@bet.home_line).to_f
-		puts "home team won and selected home team"
-		flash[:message]= ["You Won!"]
-	elsif outcome== "away" && params[:winner]=="away"
-		@wager= (params[:amount]).to_f * (@bet.away_line).to_f
-		flash[:message]= ["You Won!"]
-	elsif outcome== "draw" && params[:winner]== "draw"
-		@wager= (params[:amount]).to_f * (@bet.draw_line).to_f	
-		flash[:message] << "You Won!"	
-	else	
-		@wager= -(params[:amount].to_f)	
-		flash[:message] << "You Lost!"
-	end	
-	if @wager
-		@user_money += @wager
-		@user.update(money: @user_money)
+	user_bet= UserBet.find(params[:id])
+	bet= user_bet.bet
+	user= user_bet.user
+	wager= user_bet.amount
+	pick= user_bet.winner
 
+	if user_bet.check == 1
+		puts "In the user bet"
+		flash[:message] = ["You already got your money for this game"]	
+	else 
+
+		if pick == bet.winner
+			if pick == "home"
+				winnings= wager.to_f * (bet.home_line).to_f
+			elsif pick == "away"
+				winnings= wager.to_f * (bet.away_line).to_f
+			elsif pick == "draw"
+				winnings= wager.to_f * (bet.draw_line).to_f	
+			end		
+		end	
+
+		if winnings	
+			@total= user.money + winnings
+			User.find(user).update(money: @total)
+			user_bet.update(check: 1)
+			flash[:message]= ["$#{winnings} has been added to your account!"]
+		else
+			flash[:message] = ["sorry that isnt a winner"]
+		
+		end	
 	end
-		redirect_to "/bets/#{@bet.id}"	
-end
+	redirect_to "/users"
+	end
+
+# if outcome== "home" && params[:winner]== "home"
+# 		@wager= (params[:amount]).to_f * (@bet.home_line).to_f
+# 		puts "home team won and selected home team"
+# 		flash[:message]= ["You Won!"]
+# 	elsif outcome== "away" && params[:winner]=="away"
+# 		@wager= (params[:amount]).to_f * (@bet.away_line).to_f
+# 		flash[:message]= ["You Won!"]
+# 	elsif outcome== "draw" && params[:winner]== "draw"
+# 		@wager= (params[:amount]).to_f * (@bet.draw_line).to_f	
+# 		flash[:message] << "You Won!"	
+# 	else	
+# 		@wager= -(params[:amount].to_f)	
+# 		flash[:message] << "You Lost!"
+# 	end	
+# 	if @wager
+# 		@user_money += @wager
+# 		@user.update(money: @user_money)
+
+# 	end
+# 		redirect_to "/bets/#{@bet.id}"	
+	
+
 def create
 	flash[:message]= [] 
 	@bet= Bet.find(params[:id]) 
