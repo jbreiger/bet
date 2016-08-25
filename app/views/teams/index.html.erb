@@ -34,7 +34,7 @@
         <td> <%=x.away_line%> </td>
         <td> <%=x.draw_line%> </td>
         <td>??? - ???</td>
-        <td> <%=x.date%> <td>
+        <td> <a href='match/<%= x.id %>'><%=x.date%></a> </td>
         
         
       </tr>
@@ -61,30 +61,28 @@
     </thead>
     <tbody>
     	<%@results.each do |x|%>
-      <tr>
-        <%if x.game_id %> 
-          <% if x.date > @date %>
-          <td> <button class="btn"> <a href="/bets/<%=x.id%>"> Make Bet </a> </button> </td>
+        <tr>
+          <%if x.game_id %> 
+            <% if x.date > @date %>
+            <td> <button class="btn"> <a href="/bets/<%=x.id%>"> Make Bet </a> </button> </td>
+            <%else%>
+            <td> <a href="/bets/<%=x.id%>"> Practice </a> </td>
+            <%end%>
           <%else%>
-          <td> <a href="/bets/<%=x.id%>"> Practice </a> </td>
+            <td> N/A </td>
+          <%end%> 
+           <td> <a href="/teams/<%=x.team1%>"> <%=x.team1%>  </td>
+          <td> <a href="/teams/<%=x.team2%>"><%=x.team2%></td>
+          <td> <%=x.home_line%> </td>
+          <td> <%=x.away_line%> </td>
+          <td> <%=x.draw_line%> </td>
+          <%if x.team1_goal <0 %>
+          	<td> TBD</td>
+          <%else%> 
+          	<td><%=x.team1_goal%> - <%=x.team2_goal%></td>
           <%end%>
-        <%else%>
-          <td> N/A </td>
-        <%end%> 
-         <td> <a href="/teams/<%=x.team1%>"> <%=x.team1%>  </td>
-        <td> <a href="/teams/<%=x.team2%>"><%=x.team2%></td>
-        <td> <%=x.home_line%> </td>
-        <td> <%=x.away_line%> </td>
-        <td> <%=x.draw_line%> </td>
-        <%if x.team1_goal <0 %>
-        	<td> TBD</td>
-        <%else%> 
-        	<td><%=x.team1_goal%> - <%=x.team2_goal%></td>
-        <%end%>
-        <td> <%=x.date%> <td>
-        
-        
-      </tr>
+          <td> <a href='match/<%= x.id %>'><%=x.date%> </a></td>
+        </tr>
       <%end%>
     </tbody>
   </table>

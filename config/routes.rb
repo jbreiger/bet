@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get 'teams/table' => "teams#table"
   get 'teams/betable' => "teams#betable"
   get 'teams/:id' => "teams#show"
+
+  get 'match/:id' => 'comments#match'
   
   post 'user_bets/:id' => "user_bets#create"
   
@@ -25,6 +27,8 @@ Rails.application.routes.draw do
   get 'users' => 'users#index'
 
   post 'comment/create/:id' => 'comments#create'
+
+  post 'matchcomment/create/:id' => 'comments#matchcommentcreate'
 
   get 'sessions/logout' => 'sessions#destroy'
 
