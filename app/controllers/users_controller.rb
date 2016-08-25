@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 		flash[:message] = 'You signed up!'
 		redirect_to '/'
     else
-    	flash[:error] = 'Need Registration info!'
+    	flash[:error] = "Need Registration info"
 		redirect_to '/'
     end
   end
