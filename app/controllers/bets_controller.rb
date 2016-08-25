@@ -114,6 +114,6 @@ require 'open-uri'
     end 
     bet.update(winner: outcome)
   end 	
-  redirect_to "/teams" 
+  redirect_to "/users" 
  end   
 end 

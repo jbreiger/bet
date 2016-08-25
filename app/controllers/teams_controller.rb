@@ -41,7 +41,7 @@ class TeamsController < ApplicationController
          if x["team"] == params[:id]
            @team= @data["data"]["standings"][count]
            @teamid = Teams.find_by(team: @team["team"])
-           session[:temp] = @teamid
+           #session[:temp] = @teamid
            @comment = TeamComments.where(teams: @teamid)
            @user = User.find(session[:user_id])
           end

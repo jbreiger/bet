@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'teams/:id' => "teams#show"
   
   post "user_bets/:id" => "user_bets#create"
+  get "user_bet/cashout/:id" => "user_bets#cashout"
   
   
   root 'users#new'

@@ -10,7 +10,9 @@
   <table class="table table-hover table-condensed">
     <thead>
       <tr>
+        <th> Cashout </th>
       	<th> Result </th>
+        <th> Your Pick </th>
         <th> Bet </th>
         <th>Home team</th>
         <th> Away Team </th>
@@ -24,19 +26,21 @@
     <tbody>
     <tr>	
     	<% @user_bets.each do |x| %>
-    	<% if x.bet.team1_goal > 0 %>
-    	<td> <%=x.bet.team1_goal%> - <%=x.bet.team2_goal%> </td> 
-    	<%else%>
-    	<td> TBD </td>
-    	<%end%>
-        <td> $<%=x.amount%>0 </td>
-        <td> <%=x.bet.team1%> </td>
-        <td> <%=x.bet.team2%> </td>
-        <td> <%=x.bet.home_line%> </td>
-        <td> <%=x.bet.away_line%> </td>
-        <td> <%=x.bet.draw_line%> </td>
-        <td> <%=x.bet.date%> </td>
-        <td> <%=x.bet.created_at.to_date%> </td>
+      <td> <a href="user_bet/cashout/<%=x.id%>"> Cashout! <%=x.id%> </a> </d>
+      	<% if x.bet.team1_goal > 0 %>
+      	<td> <%=x.bet.team1_goal%> - <%=x.bet.team2_goal%> </td> 
+      	<%else%>
+      	<td> TBD </td>
+      	<%end%>
+      <td> <%=x.winner%> </td>
+      <td> $<%=x.amount%>0 </td>
+      <td> <%=x.bet.team1%> </td>
+      <td> <%=x.bet.team2%> </td>
+      <td> <%=x.bet.home_line%> </td>
+      <td> <%=x.bet.away_line%> </td>
+      <td> <%=x.bet.draw_line%> </td>
+      <td> <%=x.bet.date%> </td>
+      <td> <%=x.bet.created_at.to_date%> </td>
       </tr>
       <%end%>
     </tbody>
