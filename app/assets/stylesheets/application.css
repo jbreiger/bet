@@ -14,3 +14,23 @@
  *= require_self
  *= require bootstrap
  */
+
+ .form, .ad {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.ad {
+	margin-top: 50px;
+}
+/*body {
+	background: url(/assets/background2.jpg);
+}*/
+/*p, h1, h2, h3, h4, form, table{
+	color: white;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}*/

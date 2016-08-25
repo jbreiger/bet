@@ -42,7 +42,7 @@
         <td> <%=x.home_line%> </td>
         <td> <%=x.away_line%> </td>
         <td> <%=x.draw_line%> </td>
-          <td> <%=x.date%> <td>
+          <td> <a href='/match/<%= x.id %>'><%=x.date%> </a><td>
         <%end%>
         
         
@@ -73,7 +73,7 @@
         
           <td> <a href="/teams/<%=x.team1%>"> <%=x.team1%>  </td>
         <td> <a href="/teams/<%=x.team2%>"><%=x.team2%></td>
-          <td> <%=x.date%> <td>
+          <td> <a href='/match/<%= x.id %>'><%=x.date%> </a><td>
         <%end%>
         
         
