@@ -16,13 +16,13 @@ class CommentsController < ApplicationController
 	def match
 		@game= Bet.find(params[:id])
 		puts @game.id
-		@comment = MatchComment.where(bets_id: @game)
+		@comment = Mcomment.where(bet: @game)
 	end
 
 	def matchcommentcreate
 		id = params[:id]
 		bet = Bet.find_by(id: id)
-		mc = MatchComment.new(comment: params[:comment], bets_id: params[:id], users_id: session[:user_id])
+		mc = Mcomment.new(comment: params[:comment], bet_id: params[:id], user_id: session[:user_id])
 		if mc.save
 			flash[:message] = 'Comment saved!'
 			redirect_to(:back)
