@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   post 'teams' => "teams#create"
   get 'teams/table' => "teams#table"
   get 'teams/betable' => "teams#betable"
+  get "teams/schedule" => "teams#schedule"
   get 'teams/:id' => "teams#show"
 
   get 'match/:id' => 'comments#match'

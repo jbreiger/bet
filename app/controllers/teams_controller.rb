@@ -47,6 +47,25 @@ class TeamsController < ApplicationController
           count+=1   
       end    
 
+      team_slug= Teams.where(team: params[:id]).first.team_slug
+      puts team_slug
+      schedule_uri= "http://soccer.sportsopendata.net/v1/leagues/premier-league/seasons/16-17/rounds?team_identifier=#{team_slug}?mashape-key=QrOQ23UHkJmshjEicHpK4qPOretkp1rQ2LajsnB3Bi6iCRLl8S"
+      uri = URI.parse(schedule_uri)
+      http2 = Net::HTTP.new(uri.host, uri.port)
+      #to be able to access https URL, these line should be added
+      #github api has an https URL
+      http2.use_ssl = true
+      http2.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      request2 = Net::HTTP::Get.new(uri.request_uri)
+      response = http.request(request2)
+      data = response.body
+      @data = JSON.load(data)
+      puts "******"
+      puts @data["data"]
+     
+
+
+
     end
 
    def table
@@ -68,6 +87,33 @@ class TeamsController < ApplicationController
       @team=@data["data"]["standings"]
 
    end
+   def schedule
+    schedule_uri= "https://sportsop-soccer-sports-open-data-v1.p.mashape.com/v1/leagues/premier-league/seasons/16-17/teams?mashape-key=QrOQ23UHkJmshjEicHpK4qPOretkp1rQ2LajsnB3Bi6iCRLl8S"
+      uri = URI.parse(schedule_uri)      
+      #uri = URI.parse($soccer_uri)
+      http = Net::HTTP.new(uri.host, uri.port)
+      #to be able to access https URL, these line should be added
+      #github api has an https URL
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      request = Net::HTTP::Get.new(uri.request_uri)
+      response = http.request(request)
+      data = response.body
+      
+      #to parse JSON string; you may also use JSON.parse()
+      #JSON.load() turns the data into a hash
+      @data = JSON.load(data)
+      length=@data["data"]["teams"].length
+      x=0
+      while x<length
+      team= @data["data"]["teams"][x]["name"]
+      found= Teams.find_by(team:team)
+      team_slug=@data["data"]["teams"][x]["identifier"]
+      found.update(team_slug:team_slug)
+      x+=1
+      end
+    redirect_to "/teams"  
+   end
    def create
 
     standing_uri= "https://sportsop-soccer-sports-open-data-v1.p.mashape.com/v1/leagues/premier-league/seasons/16-17/standings?mashape-key=QrOQ23UHkJmshjEicHpK4qPOretkp1rQ2LajsnB3Bi6iCRLl8S"
@@ -88,10 +134,14 @@ class TeamsController < ApplicationController
     team=d["data"]["standings"]
     standings= d["data"]["standings"].length 
     x=0
-    t= d["data"]["standings"][x]["team"]
+    
     while x < standings do
+      t= d["data"]["standings"][x]["team"]
       hometeam = Teams.find_by(team: t)
       if hometeam == nil
+        puts "zzzzzzzzz"
+        puts "Hometeam is equal to nil"
+        puts "zzzzzzz"
         Teams.create(team: t)
       else
         hometeam.update(team: t) 

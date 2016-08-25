@@ -8,7 +8,7 @@ def cashout
 	
 	if user_bet.check == 1
 		puts "In the user bet"
-		flash[:message] = ["You already got your money for this game"]	
+		flash[:message] = "You already got your money for this game"	
 	else 
 
 		if pick == bet.winner
@@ -25,9 +25,9 @@ def cashout
 			@total= user.money + winnings
 			User.find(user).update(money: @total)
 			user_bet.update(check: 1)
-			flash[:message]= ["$#{winnings} has been added to your account!"]
+			flash[:message]= "$#{winnings} has been added to your account!"
 		else
-			flash[:message] = ["sorry that isnt a winner"]
+			flash[:message] = "Sorry, that isnt a winner"
 		
 		end	
 	end
