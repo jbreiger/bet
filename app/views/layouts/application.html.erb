@@ -50,6 +50,8 @@
         <li class="active"><a href="/teams/betable">Upcoming games <span class="sr-only">(current)</span></a></li>
         <li><a href="/teams/table">Season standings</a></li>
         <li class="active"><a href="/teams">All Games <span class="sr-only">(current)</span></a></li>
+        <li><a href="/favorite">Favorites</a></li>
+
           </ul>
         </li>
       </ul>
@@ -70,7 +72,7 @@
 <div class= "text-center">
 
 <% if flash[:message]%>
-      <p class="text-info"> <%=flash[:message]%> </p>
+      <h4 class="text-info"> <%=flash[:message]%> </h4>
 <%end%>      
 <% if flash[:error]%>     
     <h4 class='text-danger'>  <%=flash[:error]%> </h4>  

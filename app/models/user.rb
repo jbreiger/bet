@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
 	has_many :bets, :through => :user_bets
 	has_many :team_comments
 	has_many :match_comments
+	has_many :fteams
+	has_many :teams, :through=> :fteams, :class_name => :Teams
 
   	has_secure_password
 	validates :name, :birthdate, :username, :email, presence: true

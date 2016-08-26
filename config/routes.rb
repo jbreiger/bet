@@ -7,21 +7,26 @@ Rails.application.routes.draw do
 
   get 'practice/:id' => 'practices#index'
   post 'practice/:id' => 'practices#bet'
+  get 'practice/match/:id' => 'practices#match'
+  get 'practice/team/:id' => 'practices#show'
 
   get 'teams' => "teams#index"
   post 'teams' => "teams#create"
   get 'teams/table' => "teams#table"
   get 'teams/betable' => "teams#betable"
   get "teams/schedule" => "teams#schedule"
+  # get "teams/new_schedule" => "teams#new_schedule"
+
   get 'teams/:id' => "teams#show"
+
+  get 'favorite_create/:id' => "teams#favorite_create"
+  get 'favorite' => "teams#favorite"
 
   get 'match/:id' => 'comments#match'
   
 
   post "user_bets/:id" => "user_bets#create"
   get "user_bet/cashout/:id" => "user_bets#cashout"
-  
-
 
   
   root 'users#new'

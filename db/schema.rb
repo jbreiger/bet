@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160825212847) do
+ActiveRecord::Schema.define(version: 20160825234412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 20160825212847) do
     t.integer  "team2_goal"
     t.string   "winner"
   end
+
+  create_table "fteams", force: true do |t|
+    t.integer  "team_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "fteams", ["team_id"], name: "index_fteams_on_team_id", using: :btree
+  add_index "fteams", ["user_id"], name: "index_fteams_on_user_id", using: :btree
 
   create_table "mcomments", force: true do |t|
     t.integer  "bet_id"
@@ -73,6 +83,7 @@ ActiveRecord::Schema.define(version: 20160825212847) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "team_slug"
+    t.integer  "user_id"
   end
 
   create_table "user_bets", force: true do |t|

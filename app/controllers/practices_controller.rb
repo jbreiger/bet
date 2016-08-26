@@ -20,4 +20,15 @@ class PracticesController < ApplicationController
 		end	
 		redirect_to "/practice/#{match.id}"
 	end
+
+	def match
+		@game= Practice.find(params[:id])
+		puts @game.id
+		@comment = Mcomment.where(bet: @game)
+	end
+
+	def show
+		@team = Teams.find_by(team: params[:id])
+        @comment = TeamComments.where(teams: @team)
+    end
 end

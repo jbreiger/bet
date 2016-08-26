@@ -1,4 +1,5 @@
 <div class= "text-center">
+<%= image_tag("Ageless-Male-sidebar.png") %>
 <h1>Teams results</h1>
 
 <form action="/teams" method="POST"> <button type="submit" class="btn btn-primary" > Get Latest Odds </button>
@@ -32,13 +33,14 @@
       <%@practice.each do |x|%>
       <tr>
           <td> <a href="/practice/<%=x.id%>" class="btn btn-info" role="button">  Make Practice Bet </a> </td>
-         <td><%=x.team1%></a> </td>
-        <td><%=x.team2%></a></td>
+
+         <td><a href="/practice/team/<%=x.team1%>"><%=x.team1%></a> </td>
+        <td><a href="/practice/team/<%=x.team2%>"><%=x.team2%></a></td>
         <td> <%=x.home_line%> </td>
         <td> <%=x.away_line%> </td>
         <td> <%=x.draw_line%> </td>
         <td>??? - ???</td>
-        <td> <a href='/match/<%= x.id %>'><%=x.date%></a> </td>
+        <td> <a href='/practice/match/<%= x.id %>'><%=x.date%></a> </td>
         
         
       </tr>
@@ -78,6 +80,7 @@
           <%else%>
             <td> N/A </td>
           <%end%> 
+          
            <td> <a href="/teams/<%=x.team1%>"> <%=x.team1%>  </td>
           <td> <a href="/teams/<%=x.team2%>"><%=x.team2%></td>
           <td> <%=x.home_line%> </td>

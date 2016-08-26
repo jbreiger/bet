@@ -5,12 +5,13 @@
       	<h3> Record: <%=@team["overall"]["wins"]%> - <%=@team["overall"]["draws"]%> - <%=@team["overall"]["losts"]%> </h3>
       	<h3> Games: <%=@team["overall"]["matches_played"]%> </h3>
       	<h3> Goal Differential: <%=@team["overall"]["goal_difference"]%> </h3>
+        <h3> <a href="/favorite_create/<%=@fteam%>"> Add as Favorite </h3>
 </div>
 
 <% if @comment %>
 <div id="commentsbox" style='margin: auto; overflow-y:auto; width:600px;height:400px;'>
   <% @comment.reverse.each do |p| %>
-    <p><%= p.created_at %> - <%= @user.username %> : <%= p.comment %></p>
+    <p><%= p.created_at %> - <%= p.user.username %> : <%= p.comment %></p>
   <% end %>
 
 </div>
