@@ -1,17 +1,25 @@
+<div class="col-xs-offset-1">
+<p> <i> Play around and make a couple of bets on our practice games to get the hang of it. Don't worry, <b> practice bets won't change your account balance. </b> </p>
+<p> Hint: say you bet $100 on a team who has a line of 1.5 to win. If you are correct, you will win $150.</p> </i>
+
+
+<div class="inline">
 <h3> <a href="#"><%=@match.team1%> </a> to win is <%= @match.home_line %> </h3> 
 
 <h3> <a href="#"><%=@match.team2%></a> to win is <%= @match.away_line %> </h3>
 
 <h3> The draw line is <%= @match.draw_line %> </h3>
 
+<!-- <div class= "text-center"> -->
 <form action="/practice/<%=@match.id%>" class="form-inline" method="POST">
   <div class="form-group">
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
     <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
     <div class="input-group">
       <div class="input-group-addon">$</div>
       <input type="number" name="amount" class="form-control" id="exampleInputAmount" placeholder="Amount" >
   </div>
-
+ 
   <div class="radio">
       <label><input type="radio" name="winner" value="home"> <%=@match.team1%> Home </label>
     </div>
@@ -22,5 +30,6 @@
 
 
   <button type="submit" class="btn btn-primary">Make Bet</button>
-  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-</form>
+ </div> 
+</div> 
+<!-- </div> -->

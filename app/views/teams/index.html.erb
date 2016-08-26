@@ -1,6 +1,8 @@
 <div class= "text-center">
+<%if false%>
 <%= image_tag("Ageless-Male-sidebar.png") %>
-<h1>Teams results</h1>
+<%end%>
+<h1>All Matches</h1>
 
 <form action="/teams" method="POST"> <button type="submit" class="btn btn-primary" > Get Latest Odds </button>
   <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">

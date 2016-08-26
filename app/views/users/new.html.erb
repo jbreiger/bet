@@ -2,7 +2,7 @@
 body {
 	background: url(/assets/background2.jpg);
 }
-	p, text, h1, h2, h3, h4{
+	 p, text, h1, label, h2, h3, h4{
 	color: white;
     text-shadow:
     -1px -1px 0 #000,
@@ -13,18 +13,123 @@ body {
 	input {
 		color: black;
 }
+form .row {
+	margin-bottom: 12px;
+}
+/*button{
+	margin-top: 12px;
+}
+*/
+button{
+	margin-top: 12px;
+}
+
+#white{
+	color:white;
+}
+/*#login{
+	margin-top: 40px;
+}*/
+/*#block{
+	display: block;
+}*/
+/*#login, #register{
+	display: inline-block;
+	color:red;
+}*/
+
 </style>
-<div class= "text-center">
+<div class= "nothing">
+	<%if false%>
 	<div class="ad">
 		<%= image_tag("clicking-guide.jpg") %>
 	</div>
-	<div class="form">
-		<h1>The G<font size=4>ambling</font> Spot</h1>
+	<%end%>
+<!-- 	<div class="jumbotron">
+  <h1>Hello, world!</h1>
+  <p>...</p>
+  <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+</div> -->
+	<div id="register">
+			<div class="text-center">
+				<div class="page-header" id="title">
+  					<h1>The Gambling Spot - <small id="white" class="text-primary">Your spot to bet on the premier league</small></h1>
+				</div>
+			</div>
+				<div class="form-group">
+				<h2 class= "col-xs-offset-3" >Register</h2>
+				<form class="col-xs-6 col-xs-offset-0" action="/users/create" method="post">
+					
+						<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+					<div class="row">
+						<label class="col-xs-2 col-xs-offset-2">Name:</label> <input class="col-xs-6" type="text" name="name">
+					</div>
+					<div class="row">
+						<label class="col-xs-2 col-xs-offset-2">Birth-Date:</label>  <input class="col-xs-6" type="date" name="birthdate">
+					</div>
+					<div class="row">
+						 <label class="col-xs-2 col-xs-offset-2">Username:</label> <input class="col-xs-6" name="username"></p>
+					</div> 
+					<div class="row">
+						 <label class="col-xs-2 col-xs-offset-2">Email:</label> <input class="col-xs-6" name="email">
+					</div>	 
+					<div class="row"> 
+						<label class="col-xs-2 col-xs-offset-2"> Password: </label> <input type="password" class="col-xs-6" name="password"></p>
+					</div>
+					<div class="row">
+						<label class="col-xs-2 col-xs-offset-2"> Confirm Password: </label>  <input class="col-xs-6" type="password" name="password_confirmation"></p>
+					</div>	
+					<div class="row">
+						 <button type="submit" class="btn btn-primary col-xs-4 col-xs-offset-5" name="submit"> Register </button> 
+					</div>	 	
+				</form>
+		</div>
+	</div>	
+		<div id="login">
+		<div class="form-group">
+			<div class="row">
+				<h2 class="col-xs-6 col-xs-offset-3">Login</h2>
+			</div>	
+			<form class="col-xs-6 col-xs-offset-1" action="/sessions" method="post">
+				<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+				<div class="row">
+					<label class="col-xs-2"> Username </label> <input class="col-xs-6" type="text" name="username">
+				</div>	
+				<div class="row">
+					<label class="col-xs-2"> Password:</label> <input class="col-xs-6" type="password" name="password">
+				</div>
+				<div class="row">
+					<button type="submit" class="btn btn-primary col-xs-4 col-xs-offset-3" name="submit"> Login </button> 
+				</div>
+			</form>
+		</div>
+		</div>
+	
+</div>
+
+<%if false%>
+<div class= "text-center">
+	<%if false%>
+	<div class="ad">
+		<%= image_tag("clicking-guide.jpg") %>
+	</div>
+	<%end%>
+	<div class="form-group">
+		<h1>The Gambling Spot</h1>
 		<div id="register">
 			<h2>Register</h2>
 			<form action="/users/create" method="post">
 				<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-				<p>Name: <input type="text" name="name"></p>
+				Name: <input type="text" name="name"></p>
+				<div class="form-group row">
+  					<label for="example-text-input" class="col-xs-2 col-form-label">Text</label>
+				<div class="col-xs-4">
+				<input class="form-control" type="text" value="Artisanal kale" id="example-text-input">
+				</div>
+				</div>
+
+
+
 				<p>Birth-Date: <input type="date" name="birthdate"></p>
 				<p>Username: <input type="text" name="username"></p>
 				<p>Email: <input type="text" name="email"></p>
@@ -45,3 +150,4 @@ body {
 		</div>
 	</div>
 </div>
+<%end%>

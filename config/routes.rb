@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   get 'favorite_create/:id' => "teams#favorite_create"
   get 'favorite' => "teams#favorite"
+  delete 'favorite/:id' => "teams#favorite_delete"
 
   get 'match/:id' => 'comments#match'
   

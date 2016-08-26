@@ -1,12 +1,15 @@
 <div class= "text-center">
+<%if false%>
 <%= image_tag("bible.jpg") %>
-<h1>Teams results</h1>
+<%end%>
+<h1>Upcoming Games</h1>
 
 <form action="/teams" method="POST"> <button type="submit" class="btn btn-primary" > Get Latest Odds</button>
   <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
 
 </form>
-<a href="/teams"> See all previous games </a>
+<br>
+<a href="/teams"> See all games </a>
 
 </div>
 <div class="text-center">

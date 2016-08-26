@@ -27,7 +27,7 @@ def cashout
 			user_bet.update(check: 1)
 			flash[:message]= "$#{winnings} has been added to your account!"
 		else
-			flash[:message] = "Sorry, that isnt a winner"
+			flash[:error] = "Sorry, that isnt a winner"
 		
 		end	
 	end

@@ -72,10 +72,14 @@
 <div class= "text-center">
 
 <% if flash[:message]%>
+    <div class="alert alert-success">
       <h4 class="text-info"> <%=flash[:message]%> </h4>
+    </div>
 <%end%>      
 <% if flash[:error]%>     
-    <h4 class='text-danger'>  <%=flash[:error]%> </h4>  
+    <div class="alert alert-danger">
+      <h4 class='text-danger'>  <%=flash[:error]%> </h4>  
+    </div>
 <% end %>
 </div>
 <%= yield %>

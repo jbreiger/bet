@@ -5,7 +5,11 @@
 
 <% @fteam.each do |x, i| %>
  
-	<h4> <li> <%=x.team %> </h4>
-		
+	<h3> <li> <a class="text-info" href="teams/<%=x.team%>">  <%=x.team %> </a> <small> <a class="text-danger"  href= "favorite/<%= x.team%>" data-method='delete'> Remove
+  <input name="_method" value="delete" type="hidden"> </a>  </small> </h3> </li> 
 <%end%>
 </div>
+
+
+
+

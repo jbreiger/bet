@@ -28,6 +28,17 @@ class TeamsController < ApplicationController
       end 
       redirect_to(:back)
     end
+   def favorite_delete
+
+      user= User.find(session[:user_id])
+      team= Teams.find_by_team(params[:id])
+      check=Fteam.where(user: user, team: team).first
+      puts check
+      puts check.id
+      check.destroy
+      redirect_to(:back)
+   end 
+
    def index 
      @results= Bet.all.order(date: :desc)
      @date= Time.now
