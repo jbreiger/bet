@@ -1,15 +1,15 @@
 <style> 
-body {
+/*body {
 	background: url(/assets/background2.jpg);
-}
-	 p, text, h1, label, h2, h3, h4{
+}*/
+/*	 p, text, h1, label, h2, h3, h4{
 	color: white;
     text-shadow:
     -1px -1px 0 #000,
     1px -1px 0 #000,
     -1px 1px 0 #000,
     1px 1px 0 #000;
-}
+}*/
 	input {
 		color: black;
 }
@@ -24,9 +24,9 @@ button{
 	margin-top: 12px;
 }
 
-#white{
+/*#white{
 	color:white;
-}
+}*/
 /*#login{
 	margin-top: 40px;
 }*/
@@ -53,53 +53,55 @@ button{
 	<div id="register">
 			<div class="text-center">
 				<div class="page-header" id="title">
-  					<h1>The Gambling Spot - <small id="white" class="text-primary">Your spot to bet on the premier league</small></h1>
+  					<h1>The Gambling Spot - <small id="white">Your spot to bet on the premier league</small></h1>
 				</div>
 			</div>
 				<div class="form-group">
-				<h2 class= "col-xs-offset-3" >Register</h2>
-				<form class="col-xs-6 col-xs-offset-0" action="/users/create" method="post">
-					
+				
+				<form class="col-xs-10 col-xs-offset-1 col-md-6 col-lg-6" action="/users/create" method="post">
+					<h2 class= "col-xs-offset-1" >Register</h2>
 						<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
 					<div class="row">
-						<label class="col-xs-2 col-xs-offset-2">Name:</label> <input class="col-xs-6" type="text" name="name">
+						<!-- <label class="col-xs-2">Name:</label> --> <input class="col-xs-6" type="text" name="name" placeholder="name">
 					</div>
 					<div class="row">
-						<label class="col-xs-2 col-xs-offset-2">Birth-Date:</label>  <input class="col-xs-6" type="date" name="birthdate">
+						<!-- <label class="col-xs-2 col-xs-offset-2">Birth-Date:</label> -->  <input class="col-xs-6" type="date" name="birthdate" placeholder="mm/dd/yyyy">
 					</div>
 					<div class="row">
-						 <label class="col-xs-2 col-xs-offset-2">Username:</label> <input class="col-xs-6" name="username"></p>
+						 <!-- <label class="col-xs-2 col-xs-offset-2">Username:</label> --> <input class="col-xs-6" name="username" placeholder="username"></p>
 					</div> 
 					<div class="row">
-						 <label class="col-xs-2 col-xs-offset-2">Email:</label> <input class="col-xs-6" name="email">
+						<!--  <label class="col-xs-2 col-xs-offset-2">Email:</label> --> <input class="col-xs-6" name="email" placeholder="email">
 					</div>	 
 					<div class="row"> 
-						<label class="col-xs-2 col-xs-offset-2"> Password: </label> <input type="password" class="col-xs-6" name="password"></p>
+						<!-- <label class="col-xs-2 col-xs-offset-2"> Password: </label> --> <input type="password" class="col-xs-6" name="password" placeholder="password"></p>
 					</div>
 					<div class="row">
-						<label class="col-xs-2 col-xs-offset-2"> Confirm Password: </label>  <input class="col-xs-6" type="password" name="password_confirmation"></p>
+						<!-- <label class="col-xs-2 col-xs-offset-2"> Confirm Password: </label> -->  <input class="col-xs-6" type="password" name="password_confirmation" placeholder="confirm password"></p>
 					</div>	
 					<div class="row">
-						 <button type="submit" class="btn btn-primary col-xs-4 col-xs-offset-5" name="submit"> Register </button> 
+						 <button type="submit" class="btn btn-primary col-xs-3 col-xs-offset-1" name="submit"> Register </button> 
 					</div>	 	
 				</form>
 		</div>
 	</div>	
 		<div id="login">
+		
 		<div class="form-group">
-			<div class="row">
-				<h2 class="col-xs-6 col-xs-offset-3">Login</h2>
+			
+			<form class="col-xs-10 col-xs-offset-1 col-md-6 col-lg-6" action="/sessions" method="post">
+				<div class="row">
+				<h2 class="col-xs-offset-1">Login</h2>
 			</div>	
-			<form class="col-xs-6 col-xs-offset-1" action="/sessions" method="post">
 				<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
 				<div class="row">
-					<label class="col-xs-2"> Username </label> <input class="col-xs-6" type="text" name="username">
+					<!-- <label class="col-xs-2"> Username </label>  --><input class="col-xs-6" type="text" name="username" placeholder="username">
 				</div>	
 				<div class="row">
-					<label class="col-xs-2"> Password:</label> <input class="col-xs-6" type="password" name="password">
+					<!-- <label class="col-xs-2"> Password:</label> --> <input class="col-xs-6" type="password" name="password" placeholder="password">
 				</div>
 				<div class="row">
-					<button type="submit" class="btn btn-primary col-xs-4 col-xs-offset-3" name="submit"> Login </button> 
+					<button type="submit" class="btn btn-primary col-xs-3 col-xs-offset-1" name="submit"> Login </button> 
 				</div>
 			</form>
 		</div>
